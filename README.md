@@ -82,6 +82,7 @@ Um einen GitHub Account zu erstellen, öffnet man die Seite https://github.com/j
 Der Git-Installer kann unter folgender Seite installiert werden: https://git-scm.com/downloads
 
 **Commands**
+
 | Commands | Bedeutung |
 | -------------- | -------------- |
 | git branch | Mit diesem Befehl listet man alle Branches im eigenem Repo auf. Ebenfalls ist es möglich eigene Branches zu erstellen oder zu dem genannten Branch zu wechseln |
