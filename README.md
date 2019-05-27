@@ -3,14 +3,14 @@ Dokumentation Modul 300
 
 ## Inhaltsverzeichnis
 
-* 01 - [K1](##K1)
+* 01 - [K1](#K1)
 * 02 - [Git Client](#--02---git-client)
 * 03 - [VirtualBox](#--03---virtualbox)
 * 04 - [Vagrant](#--04---vagrant)
 * 05 - [Visual Studio Code](#-05---visual-studio-code) / [Alternative Markdown Editoren](#alternative-editoren)
 * 06 - [Quellenverzeichnis](#-06---quellenverzeichnis)
 
-## K1
+## K1 <a name="K1"></a>
 ### VirtualBox
 ***
 Virtual Box ist eine Virtualisierungssoftware von Oracle. Wir benutzen dieses Programm, um mit Vagrant VMs zu erstellen.
@@ -109,7 +109,7 @@ Die Dokumentation wurde im VisualStudio Code mit der Extension MarkdownAllInOne 
 
 ### andere, vorgefertigte vm auf eigenem Notebook aufgesetzt
 ***
-Man kann von der Seite https://app.vagrantup.com/boxes/search?utf8=%E2%9C%93&sort=downloads&provider=&q= verschiedene VM Boxen herunterladen, um einzelne Vagrantmaschinen zu installieren.
+Man kann von der Seite https://app.vagrantup.com/boxes/search?utf8=%E2%9C%93&sort=downloads&provider=&q= verschiedene VM Boxen herunterladen, um einzelne Vagrantmaschinen zu installieren und einzurichten.
 ![VagrantBoxesInstall](images/VagrantBoxesInstall.png)
 1. Nun kann man im Terminal folgenden Befehl eingeben, um die Debian Box zu installieren
     ```
