@@ -14,7 +14,6 @@ Auf folgender Seite kann VirtualBox installiert werden: https://www.virtualbox.o
 2. Danach geht man normal die Installation durch und wählt den Pfad aus, wo VirtualBox installiert werden soll
 ![Step2VirtualBox](https://i.imgur.com/pC3cs2i.png)
 
-
 ### Vagrant
 Vagrant ist ein Tool zum Erstellen und Verwalten von Umgebungen virtueller Maschinen in einem einzigen Workflow.
 
@@ -43,3 +42,22 @@ Mittels eines SSH-Keys ist es möglich auf einem Server zuzugreifen. Dazu führt
 5. Nun kann ein Passwort für den Key festgelegt werden. Ich empfehle dieses zu setzen und anschliessend dem SSH-Agent zu hinterlegen, sodass keine erneute Eingabe (z.B. beim Pushen) notwendig ist: 
 `Enter passphrase (empty for no passphrase): [Passwort]` 
 `Enter same passphrase again: [Passwort wiederholen]`
+
+## K2
+
+### GitHub oder Gitlab-Account erstellt
+Um einen GitHub Account zu erstellen, öffnet man die Seite https://github.com/join?source=header-home und folgt dort die einzelnen Steps
+1. Username auswählen
+2. Eine gültige E-Mailadresse auswählen
+3. Passwort auswählen
+4. Verifieren, dass man kein Roboter ist
+![GitHubAccountCreation](images/CreateGitHubAccount.png)
+
+### Git-Client wurde verwendet
+
+
+### Markdown-Editor ausgewählt und eingerichtet
+
+### Markdown ist strukturiert
+
+### Dokumentation ist als Markdown vorhanden
