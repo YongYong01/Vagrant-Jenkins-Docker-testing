@@ -40,14 +40,22 @@ Mittels eines SSH-Keys ist es möglich auf einem Server zuzugreifen. Dazu führt
 
 1. Terminal (Bash) öffnen
 2. Folgenden Befehl mit der Account-E-Mail von GitHub einfügen: 
-`ssh-keygen -t rsa -b 4096 -C "beispiel@beispiel.com"`
+```
+    ssh-keygen -t rsa -b 4096 -C "beispiel@beispiel.com"
+```
 3. Neuer SSH-Key wird erstellt: 
-`Generating public/private rsa key pair.`
+```
+Generating public/private rsa key pair.
+```
 4. Bei der Abfrage, unter welchem Namen der Schlüssel gespeichert werden soll, die Enter-Taste drücken (für Standard): 
-`Enter a file in which to save the key (~/.ssh/id_rsa): [Press enter]`
+```
+    Enter a file in which to save the key (~/.ssh/id_rsa): [Press enter]
+```
 5. Nun kann ein Passwort für den Key festgelegt werden. Ich empfehle dieses zu setzen und anschliessend dem SSH-Agent zu hinterlegen, sodass keine erneute Eingabe (z.B. beim Pushen) notwendig ist: 
-`Enter passphrase (empty for no passphrase): [Passwort]` 
-`Enter same passphrase again: [Passwort wiederholen]`
+```
+    Enter passphrase (empty for no passphrase): [Passwort]
+    Enter same passphrase again: [Passwort wiederholen]
+```
 
 ## K2
 
@@ -82,7 +90,10 @@ Mardown All in One von Yu Zhang
 ![MarkdownAllInOne](images/MarkdownAllInOne.png)
 
 ### Dokumentation ist als Markdown vorhanden
+***
 Die Dokumentation wurde im VisualStudio Code mit der Extension MarkdownAllInOne geschrieben.
 ![MarkdownDokumentation](images/MarkdownDokumentaion.png)
 
 ## K3
+### Bestehende vm aus Vagrant-Cloud einrichten
+***
