@@ -117,7 +117,7 @@ Die Dokumentation wurde im VisualStudio Code mit der Extension MarkdownAllInOne 
     ```
         cd M300/vagrant/web
     ```
-3. Die Vagrant VM startet man mit volgendem Befehl
+3. Die Vagrant VM startet man mit folgendem Befehl
     ```
         vagrant up
     ```
@@ -170,7 +170,7 @@ Man kann von der Seite https://app.vagrantup.com/boxes/search?utf8=%E2%9C%93&sor
 | vagrant box list | listet alle verfügbaren vagrant boxen auf |
 | vagrant init | erstellt ein eigenes Vagrantfile |
 | vagrant up | erstellt mit dem Vagrantfile die VM | 
-| vagrant ssh | man greift mit diesem Befehl auf die Vagrant VM zu |
+| vagrant ssh | man greift mit diesem Befehl auf die Vagrant VM zu (mittels SSH) |
 
 ### Netzwerkplan
 
