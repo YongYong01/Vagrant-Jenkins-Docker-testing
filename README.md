@@ -10,6 +10,7 @@ Dokumentation Modul 300
 * 05 - [K5](#k5-)
 
 ## K1 <a name="k1"></a>
+> [⇧ **Nach oben**](#inhaltsverzeichnis)
 ### VirtualBox
 ***
 Virtual Box ist eine Virtualisierungssoftware von Oracle. Wir benutzen dieses Programm, um mit Vagrant VMs zu erstellen.
@@ -66,6 +67,7 @@ Mittels eines SSH-Keys ist es möglich auf einem Server zuzugreifen. Dazu führt
     ```
 
 ## K2 <a name="k2"></a>
+> [⇧ **Nach oben**](#inhaltsverzeichnis)
 
 ### GitHub oder Gitlab-Account erstellt
 ***
@@ -104,10 +106,27 @@ Die Dokumentation wurde im VisualStudio Code mit der Extension MarkdownAllInOne 
 ![MarkdownDokumentation](images/MarkdownDokumentaion.png)
 
 ## K3 <a name="k3"></a>
+> [⇧ **Nach oben**](#inhaltsverzeichnis)
+
 ### Bestehende vm aus Vagrant-Cloud einrichten
+1. Um die bestehende Vagrant VM zu starten muss man zuerst den Repo vom Modul klonen
+    ```
+        git clone https://github.com/YongYong01/M300-1.git
+    ```
+2. Danach exploriert man in das Verzeichnis der VM
+    ```
+        cd M300/vagrant/web
+    ```
+3. Die Vagrant VM startet man mit volgendem Befehl
+    ```
+        vagrant up
+    ```
+4. Man kann auf die VM per SSH zugreifen
+   ```
+        vagrant ssh
+   ```
 
-
-### andere, vorgefertigte vm auf eigenem Notebook aufgesetzt
+### Andere, vorgefertigte vm auf eigenem Notebook aufgesetzt
 ***
 Man kann von der Seite https://app.vagrantup.com/boxes/search?utf8=%E2%9C%93&sort=downloads&provider=&q= verschiedene VM Boxen herunterladen, um einzelne Vagrantmaschinen zu installieren und einzurichten.
 ![VagrantBoxesInstall](images/VagrantBoxesInstall.png)
@@ -139,6 +158,25 @@ Man kann von der Seite https://app.vagrantup.com/boxes/search?utf8=%E2%9C%93&sor
             config.vm.box = "debian/jessie64"
         end
     ```
+
+### Kennt die Vagrant-Befehle
+***
+
+**Commands** 
+
+| Commands | Bedeutung |
+| ----- | ----- |
+| vagrant box add | fügt vagrant boxen hinzu |
+| vagrant box list | listet alle verfügbaren vagrant boxen auf |
+| vagrant init | erstellt ein eigenes Vagrantfile |
+| vagrant up | erstellt mit dem Vagrantfile die VM | 
+| vagrant ssh | man greift mit diesem Befehl auf die Vagrant VM zu |
+
+### Netzwerkplan
+
+
 ## K4 <a name="k4"></a>
+> [⇧ **Nach oben**](#inhaltsverzeichnis)
 
 ## K5 <a name="k5"></a>
+> [⇧ **Nach oben**](#inhaltsverzeichnis)
