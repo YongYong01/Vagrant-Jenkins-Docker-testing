@@ -3,7 +3,7 @@ Dokumentation Modul 300
 
 ## Inhaltsverzeichnis
 
-* 01 - [K1](##K1)
+* 01 - [K1](#K1)
 * 02 - [Git Client](#--02---git-client)
 * 03 - [VirtualBox](#--03---virtualbox)
 * 04 - [Vagrant](#--04---vagrant)
@@ -137,6 +137,6 @@ Man kann von der Seite https://app.vagrantup.com/boxes/search?utf8=%E2%9C%93&sor
         vi Vagrantfile
 
         Vagrant.configure("2") do |config|
-        config.vm.box = "debian/jessie64"
+            config.vm.box = "debian/jessie64"
         end
     ```
