@@ -1,6 +1,15 @@
 # TBZM300
 Dokumentation Modul 300
 
+## Inhaltsverzeichnis
+
+* 01 - [K1](##K1)
+* 02 - [Git Client](#--02---git-client)
+* 03 - [VirtualBox](#--03---virtualbox)
+* 04 - [Vagrant](#--04---vagrant)
+* 05 - [Visual Studio Code](#-05---visual-studio-code) / [Alternative Markdown Editoren](#alternative-editoren)
+* 06 - [Quellenverzeichnis](#-06---quellenverzeichnis)
+
 ## K1
 ### VirtualBox
 ***
@@ -40,22 +49,22 @@ Mittels eines SSH-Keys ist es möglich auf einem Server zuzugreifen. Dazu führt
 
 1. Terminal (Bash) öffnen
 2. Folgenden Befehl mit der Account-E-Mail von GitHub einfügen: 
-```
-    ssh-keygen -t rsa -b 4096 -C "beispiel@beispiel.com"
-```
+    ```
+        ssh-keygen -t rsa -b 4096 -C "beispiel@beispiel.com"
+    ```
 3. Neuer SSH-Key wird erstellt: 
-```
-Generating public/private rsa key pair.
-```
+    ```
+    Generating public/private rsa key pair.
+    ```
 4. Bei der Abfrage, unter welchem Namen der Schlüssel gespeichert werden soll, die Enter-Taste drücken (für Standard): 
-```
-    Enter a file in which to save the key (~/.ssh/id_rsa): [Press enter]
-```
+    ```
+        Enter a file in which to save the key (~/.ssh/id_rsa): [Press enter]
+    ```
 5. Nun kann ein Passwort für den Key festgelegt werden. Ich empfehle dieses zu setzen und anschliessend dem SSH-Agent zu hinterlegen, sodass keine erneute Eingabe (z.B. beim Pushen) notwendig ist: 
-```
-    Enter passphrase (empty for no passphrase): [Passwort]
-    Enter same passphrase again: [Passwort wiederholen]
-```
+    ```
+        Enter passphrase (empty for no passphrase): [Passwort]
+        Enter same passphrase again: [Passwort wiederholen]
+    ```
 
 ## K2
 
@@ -63,9 +72,9 @@ Generating public/private rsa key pair.
 ***
 Um einen GitHub Account zu erstellen, öffnet man die Seite https://github.com/join?source=header-home und folgt dort die einzelnen Steps
 1. Username auswählen
-2. Eine gültige E-Mailadresse auswählen
-3. Passwort auswählen
-4. Verifieren, dass man kein Roboter ist
+2. Eine gültige E-Mailadresse eingeben
+3. Passwort eingeben
+4. Verifizieren, dass man kein Roboter ist
 ![GitHubAccountCreation](images/CreateGitHubAccount.png)
 
 ### Git-Client wurde verwendet
@@ -96,4 +105,37 @@ Die Dokumentation wurde im VisualStudio Code mit der Extension MarkdownAllInOne 
 
 ## K3
 ### Bestehende vm aus Vagrant-Cloud einrichten
+
+
+### andere, vorgefertigte vm auf eigenem Notebook aufgesetzt
 ***
+Man kann von der Seite https://app.vagrantup.com/boxes/search?utf8=%E2%9C%93&sort=downloads&provider=&q= verschiedene VM Boxen herunterladen, um einzelne Vagrantmaschinen zu installieren.
+![VagrantBoxesInstall](images/VagrantBoxesInstall.png)
+1. Nun kann man im Terminal folgenden Befehl eingeben, um die Debian Box zu installieren
+    ```
+        vagrant box add debian/jessie64
+
+        Result:
+        ==> box: Loading metadata for box 'debian/jessie64'
+        box: URL: https://vagrantcloud.com/debian/jessie64
+        This box can work with multiple providers! The providers that it
+        can work with are listed below. Please review the list and choose
+        the provider you will be working with.
+
+        1) libvirt
+        2) virtualbox
+
+        Enter your choice: 2
+    ```
+2. Danach erstellt man ein eigenes Vagrantfile um die VM einzurichten
+    ```
+        vagrant init debian/jessie64
+    ```
+3. Zum Schluss kann man auch eigene Konfigurationen mitgeben
+    ```
+        vi Vagrantfile
+
+        Vagrant.configure("2") do |config|
+        config.vm.box = "debian/jessie64"
+        end
+    ```
