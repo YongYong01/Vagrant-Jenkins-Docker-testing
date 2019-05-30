@@ -253,9 +253,29 @@ Das Standard-Firewall-Konfigurationstool für Ubuntu ist ufw. ufw wurde entwicke
 ### Reverse-Proxy eingerichtet
 ***
 
+*Reverse Proxy*
+Mit einem Reverse Proxy können Systeme versteckt werden.
 
 ### Benutzer- und Rechtevergabe ist eingerichtet
 ***
+
+*Basics*
+
+Lesen (R): 
+Diese Leseberechtigung gibt die Befugnisse, eine Datei zu öffnen und zu lesen. Die Leseberechtigung für ein Verzeichnis gibt Ihnen die Möglichkeit, dessen Inhalt aufzulisten.
+
+Schreiben (W): Die Schreibberechtigung gibt die Befugnisse, den Inhalt einer Datei zu ändern. Die Schreibberechtigung für ein Verzeichnis gibt die Berechtigung, im Verzeichnis gespeicherte Dateien hinzuzufügen, entfernen und umzubenennen. 
+
+Ausführen (X): Unter Unix/Linux kann ein Programm nur ausführt werden, wenn die Ausführungsberechtigung gesetzt ist. Wenn die Ausführungsberechtigung nicht gesetzt ist, kann man den Programmcode möglicherweise nicht nicht ausführen. 
+
+Ordner und Files sind jeweils in drei verschiedenen Berechtigungsgruppen eingeteilt. Der Buchstabe definiert den Dateityp. Die nächsten drei sind die Berechtigung für den File/Directory owner. In der mitte findet man die Berechtigungen für eine definierte Gruppe und die letzten drei Buchstaben bestimmten die Berechtigungen für jeden anderen User auf dem System.
+
+Visuelle Darstellung:
+![File/Direcotry Permission Settings](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoRC3ndHT7osbq6wVK2jB1SUBti0JPpYerSzXqJEkvJ2TXDi0Ybg)
+
+*Commands*
+| Command | Bedeutung |
+
 ### Zugang mit SSH-Tunnel abgesichert
 ***
 ### Sicherheitsmassnahmen sind dokumentiert
@@ -398,12 +418,14 @@ Auf ch-db01 wurde der MySQL Container erstellt. Ich weiss nun, wie ich eine Date
 
 *Jenkins*
 Jenkins ist ein DevOps tool, welches ermöglicht Coninues integration in einer Umgebung einzurichten. Sprich, es können verschiedene DevOps phasen einrichten, um automatisierte Lösungen besser auszurollen. Das Tool wurde auf dem ch-web01 Server eingerichtet. Die Applikation läuft in einem Container. Die Applikation kann geöffnet werden mit dem Port 8082.
+
     ```
         http://localhost:8083
     ```
 
 *Apache*
 Der Webserver wurde auf dem ch-web01 eingerichtet. Die Applikation wurde in einem Container eingerichtet. Die Applikation kann erweitert werden, indem Webseiten noch hinzugefügt werden, von dem man aus alle Applikationen und Container von dort aus verwalten kann. Dazu hatte ich leider nicht genug Zeit. Darum läuft momentan die Standardindexseite von Apache auf Port 8080.
+
     ```
         http://localhost:8080
     ```
