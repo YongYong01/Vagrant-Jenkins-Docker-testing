@@ -33,7 +33,7 @@ Vagrant.configure("2") do |config|
 			sudo apt-get -y install apache2
 			mkdir /etc/shared
 			sh /vagrant/scripts/ufw.sh
-			sh /vagrant/scripts/docker.sh
+			sh /vagrant/scripts/docker_web01.sh
 		SHELL
 		web01.vm.synced_folder "./shared_web01", "/etc/shared"
 		
@@ -54,19 +54,10 @@ Vagrant.configure("2") do |config|
 		db01.vm.network "forwarded_port", guest:8082, host:8082, auto_correct: true
 		db01.vm.network "forwarded_port", guest:3306, host:3306, auto_correct: true  
 		
-		# Enabling a forwarded Portrange for Jenkins
-		for i in 32760..32780
-				db01.vm.network :forwarded_port, guest: i, host: i
-		end	
-		
 		db01.vm.provision :shell, inline: <<-SHELL
 			sudo apt-get update
-			sudo apt-get -y install debconf-utils 
-			sudo apt-get -y install apache2 
-			sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password admin'
-			sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password admin'
-			sudo apt-get -y install php libapache2-mod-php php-curl php-cli php-mysql php-gd mysql-client mysql-server 
-			sudo service apache2 restart 
+			sudo apt-get -y install apache2
+			sh /vagrant/scripts/docker_db01.sh 
 		SHELL
 		db01.vm.synced_folder "./shared_db01", "/etc/shared"
 
