@@ -302,13 +302,14 @@ Das Projekt ist anspruchsvoll, jedoch sind viele Scripts geschrieben mit simplen
 
 #### Docker Befehle
 
-| Commands | Bedeutung |
-| ---- | ---- |
-| docker built <Source> | Erstellt ein Docker image |
-| docker images | Zeigt alle verfügbare Docker images |
-| docker rmi <Image> | Löscht ein Docker image |
-| docker run <Image> | startet ein Docker image |
-| docker exec -it <Container> /bin/bash | Eploriert ein Container |
+| Command | Bedeutung |
+| ---- | ---- |
+| docker built "Source" | Erstellt ein Docker image | 
+| docker images | Zeigt alle verfügbare Docker images |
+| docker rmi "image" | Löscht ein Docker image |
+| docker run "image" | startet ein Docker image |
+| docker exec it "Container" \bin\bash | Exploriert einen Container |
+
 
 ### Cloud-Integration
 ***
