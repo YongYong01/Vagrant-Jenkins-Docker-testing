@@ -275,6 +275,7 @@ Visuelle Darstellung:
 ![File/Direcotry Permission Settings](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoRC3ndHT7osbq6wVK2jB1SUBti0JPpYerSzXqJEkvJ2TXDi0Ybg)
 
 *Commands*
+
 | Command | Bedeutung |
 | ---- | ---- |
 | chmod | Dateirechte anpassen | 
