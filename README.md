@@ -17,7 +17,7 @@ Virtual Box ist eine Virtualisierungssoftware von Oracle. Wir benutzen dieses Pr
 
  Oracle VM VirtualBox ist ziemlich einfach, aber auch sehr leistungsfähig. Es kann überall laufen, von kleinen Embedded-Systemen oder Desktop-Computern bis hin zu Rechenzentrumsbereitstellungen und sogar Cloud-Umgebungen. 
 
-Auf jeder einzelnen virtuellen Maschine kann 
+Auf jeder einzelnen virtuellen Maschine kann mittels Vagrant bei der automatischen Einrichtung die Software installiert werden.
 
 Auf folgender Seite kann VirtualBox installiert werden: https://www.virtualbox.org/wiki/Downloads
 
@@ -197,10 +197,10 @@ Man kann von der Seite https://app.vagrantup.com/boxes/search?utf8=%E2%9C%93&sor
     || NAT: 32760-32780, 80, 8080, 8081, 8082, 3306,                                                ||
     ||                                                                                              ||
     || +-----------------------------------------+      +-----------------------------------------+ ||
-    || |Jenkins Container                        |      | Apache Container                        | ||
-    || |Ports: 8080, 8082                        |      | Ports: 80, 443, 8081                    | ||
-    || |Version: 2.60.3                          |      | Version: 14.04                          | ||
-    || |Plugins: git-client, docker-engine       |      | Plugins: -                              | ||
+    || | Jenkins Container                       |      | Apache Container                        | ||
+    || | Ports: 8080, 8082                       |      | Ports: 80, 443, 8081                    | ||
+    || | Version: 2.60.3                         |      | Version: 14.04                          | ||
+    || | Plugins: git-client, docker-engine      |      | Plugins: -                              | ||
     || |                                         |      |                                         | ||
     || |                                         |      |                                         | ||
     || +-----------------------------------------+      +-----------------------------------------+ ||
@@ -215,10 +215,10 @@ Man kann von der Seite https://app.vagrantup.com/boxes/search?utf8=%E2%9C%93&sor
     || NAT: 32760-32780, 80, 8080, 8081, 8082, 3306,                                                ||
     ||                                                                                              ||
     || +------------------------------------------------------------------------------------------+ ||
-    || |MySQL Container                                                                           | ||
-    || |Ports: 3306                                                                               | ||
-    || |Version: 2.60.3                                                                           | ||
-    || |Plugins: -                                                                                | ||
+    || | MySQL Container                                                                          | ||
+    || | Ports: 3306                                                                              | ||
+    || | Version: 2.60.3                                                                          | ||
+    || | Plugins: -                                                                               | ||
     || |                                                                                          | ||
     || |                                                                                          | ||
     || +------------------------------------------------------------------------------------------+ ||
@@ -260,6 +260,7 @@ Das Standard-Firewall-Konfigurationstool für Ubuntu ist ufw. ufw wurde entwicke
 ***
 ### Sicherheitsmassnahmen sind dokumentiert
 ***
+Es existiert eine UFW Firewall, welche alle ungebrauchten Ports blockiert. Für Jenkins und MySQL wurde ein kryptisches Passwort erstellt und zusätzlich User mit Read-Only Berechtigungen.
 
 
 ## K5 <a name="k5"></a>
@@ -396,13 +397,26 @@ Die VMs wurden in VirtualBox erstellt. Da ich VirtualBox schon auf dem Mac besit
 Auf ch-db01 wurde der MySQL Container erstellt. Ich weiss nun, wie ich eine Datenbank in eine einzelnen Container verpacke, anstatt eine eigene Maschine einzurichten.
 
 *Jenkins*
-Jenkins ist ein DevOps tool, welches ermöglicht Coninues integration in einer Umgebung einzurichten. Sprich, es können verschiedene DevOps phasen einrichten, um automatisierte Lösungen besser auszurollen. Das Tool wurde auf dem ch-web01 Server eingerichtet. Die Applikation läuft in einem Container.
+Jenkins ist ein DevOps tool, welches ermöglicht Coninues integration in einer Umgebung einzurichten. Sprich, es können verschiedene DevOps phasen einrichten, um automatisierte Lösungen besser auszurollen. Das Tool wurde auf dem ch-web01 Server eingerichtet. Die Applikation läuft in einem Container. Die Applikation kann geöffnet werden mit dem Port 8082.
+    ```
+        http://localhost:8083
+    ```
 
 *Apache*
-Der Webserver wurde auf dem ch-web01 eingerichtet
+Der Webserver wurde auf dem ch-web01 eingerichtet. Die Applikation wurde in einem Container eingerichtet. Die Applikation kann erweitert werden, indem Webseiten noch hinzugefügt werden, von dem man aus alle Applikationen und Container von dort aus verwalten kann. Dazu hatte ich leider nicht genug Zeit. Darum läuft momentan die Standardindexseite von Apache auf Port 8080.
+    ```
+        http://localhost:8080
+    ```
 
 ### Vergleich Vorwissen - Wissenszuwachs
 ***
+Ich weiss nun, wie man mittels Vagrant automatisch VMs erstellen kann. Zusätzlich kann ich nun Container auf virtuelle Maschinen erstellen, welche mir ermöglichen Applikationen abzuspalten.
+Weiterhin kann ich auch eigene Mikroprozesse erstellen und diese Einsetzen.
 
 ### Reflexion
 ***
+Das Projekt konnte auch mir aufzeigen, dass persönlich eine unerforschte Welt der Systemtechnik existiert. Ich finde es gut, dass wir in diesem Modul eine starke Mischung aus skripten und systemverwaltung gelernt haben.
+Meine Modularbeit besitzt den Schwerpunkt Automatisation, darum musste ich auch mich wieder in das Skripting vertiefen. Auch wenn ich nicht allzuschwierige Skripte geschrieben habe, hatte ich trotzdem vieles dazugelernt.
+Sehr schwierig war es die Dockerfiles richtig einzurichten, da mir dies komplett neu war. Hilfreich waren zudem die einzelnen Bespielen im Modulrepo.
+
+Mir hat das Modul sehr gefallen und ich konnte einiges dazulernen.
