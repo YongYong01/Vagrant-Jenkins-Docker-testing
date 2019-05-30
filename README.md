@@ -190,5 +190,32 @@ Man kann von der Seite https://app.vagrantup.com/boxes/search?utf8=%E2%9C%93&sor
 ## K4 <a name="k4"></a>
 > [⇧ **Nach oben**](#inhaltsverzeichnis)
 
+### Firewall eingerichtet inkl. Rules
+***
+*Firewall*
+Eine Firewall ist eine Netzwerksicherheitsvorrichtung, die den ein- und ausgehenden Netzwerkverkehr überwacht und entscheidet, ob ein bestimmter Datenverkehr basierend auf einem definierten Satz von Sicherheitsregeln zugelassen oder blockiert werden soll.
+*ufw*
+Das Standard-Firewall-Konfigurationstool für Ubuntu ist ufw. ufw wurde entwickelt, um die Konfiguration von iptables Firewalls zu erleichtern und bietet eine benutzerfreundliche Möglichkeit, eine IPv4- oder IPv6-Host-basierte Firewall zu erstellen. Standardmäßig ist UFW deaktiviert. UFW steht für Uncomplicatet Firewall, da sie sehr schlicht zu verwalten ist.
+
+**Commands**
+
+| Commands | Bedeutung |
+| ----- | ----- |
+| ufw status | zeigt den Status der Firewall an |
+| ufw enable | Aktiviert die Firewall |
+| ufw disable | Deaktiviert die Firewall |
+| ufw allow | Öffnet einen Port | 
+| ufw deny | Blockiert einen Port |
+| ufw reject | Blockiert einen Port von ausser (Absender) |
+
+### Reverse-Proxy eingerichtet
+***
+### Benutzer- und Rechtevergabe ist eingerichtet
+***
+### Zugang mit SSH-Tunnel abgesichert
+***
+### Sicherheitsmassnahmen sind dokumentiert
+***
+
 ## K5 <a name="k5"></a>
 > [⇧ **Nach oben**](#inhaltsverzeichnis)

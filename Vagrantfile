@@ -24,5 +24,7 @@ end
 		mkdir /etc/shared
 	SHELL
 	config.vm.synced_folder "./shared_web01", "/etc/shared"
+	
+	config.vm.provision "shell", path: "scripts/ufw.sh"
 end
 
