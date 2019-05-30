@@ -183,9 +183,31 @@ Man kann von der Seite https://app.vagrantup.com/boxes/search?utf8=%E2%9C%93&sor
 | vagrant init | erstellt ein eigenes Vagrantfile |
 | vagrant up | erstellt mit dem Vagrantfile die VM | 
 | vagrant ssh | man greift mit diesem Befehl auf die Vagrant VM zu (mittels SSH) |
+| vagrant halt | stoppt die Vagrant VM |
+| vagrant destroy | stoppt und zerstört die Vagrant VM |
 
 ### Netzwerkplan
-
++-----------------------------------------------------------------------------------------------+
+| Netzwerk: 10.0.2.0/24                                                                         |
+|+---------------------------------------------------------------------------------------------+|
+|| Hostname: ch-web01                                                                          ||
+|| OS: Ubunt  16.04 LTS                                                                        ||
+||                                                                                             ||
+|| LAN enp3s0: 10.0.2.15                                                                       ||
+|| Docker docker0: 172.17.0.1                                                                  ||
+|| Port: 80, 443, 8080, 8082                                                                   ||
+|| NAT: 32760-32780, 80, 8080, 8081, 8082, 3306,                                               ||
+||                                                                                             ||
+||+-----------------------------------------+      +-----------------------------------------+ ||
+|||Jenkins Container                        |      | Apache Container                        | ||
+|||Ports: 8080, 8082                        |      | Ports: 80, 443, 8081                    | ||
+|||Version: 2.60.3                          |      | Version: 14.04                          | ||
+|||Plugins: git-client, docker-engine       |      | Plugins: -                              | ||
+|||                                         |      |                                         | ||
+|||                                         |      |                                         | ||
+||+-----------------------------------------+      +-----------------------------------------+ ||
+|+---------------------------------------------------------------------------------------------+|
++-----------------------------------------------------------------------------------------------+
 
 ## K4 <a name="k4"></a>
 > [⇧ **Nach oben**](#inhaltsverzeichnis)
@@ -219,3 +241,23 @@ Das Standard-Firewall-Konfigurationstool für Ubuntu ist ufw. ufw wurde entwicke
 
 ## K5 <a name="k5"></a>
 > [⇧ **Nach oben**](#inhaltsverzeichnis)
+### Kreativität
+***
+### Komplexität
+***
+### Umfang
+***
+### Umsetzung eigener Ideen
+***
+### Cloud-Integration
+***
+### Authentifizierung und Autorisierung via LDAP
+***
+### Übungsdokumentation als Vorlage für Modul-Unterlagen erstellt
+*** 
+### Persönlicher Lernentwicklung
+***
+### Vergleich Vorwissen - Wissenszuwachs
+***
+### Reflexion
+***

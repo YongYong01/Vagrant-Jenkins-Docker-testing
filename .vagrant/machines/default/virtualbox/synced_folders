@@ -1,0 +1,1 @@
+{"virtualbox":{"/etc/shared":{"guestpath":"/etc/shared","hostpath":"/Users/ch22763/Documents/tbzrepo/TBZM300/shared_web01","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/ch22763/Documents/tbzrepo/TBZM300","disabled":false,"__vagrantfile":true}}}

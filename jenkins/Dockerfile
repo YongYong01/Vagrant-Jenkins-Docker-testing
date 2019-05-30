@@ -1,4 +1,4 @@
-FROM jenkins:1.609.3
+FROM jenkins:2.164.3
 
 USER root
 
@@ -28,4 +28,3 @@ COPY plugins.txt /usr/share/jenkins/plugins.txt
 VOLUME /vagrant
 
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
-
