@@ -262,7 +262,7 @@ Mit einem Reverse Proxy können Systeme versteckt werden.
 *Basics*
 
 Lesen (R): 
-Diese Leseberechtigung gibt die Befugnisse, eine Datei zu öffnen und zu lesen. Die Leseberechtigung für ein Verzeichnis gibt Ihnen die Möglichkeit, dessen Inhalt aufzulisten.
+Die Leseberechtigung gibt die Befugnisse, eine Datei zu öffnen und zu lesen. Die Leseberechtigung für ein Verzeichnis gibt die Möglichkeit, dessen Inhalt aufzulisten.
 
 Schreiben (W): Die Schreibberechtigung gibt die Befugnisse, den Inhalt einer Datei zu ändern. Die Schreibberechtigung für ein Verzeichnis gibt die Berechtigung, im Verzeichnis gespeicherte Dateien hinzuzufügen, entfernen und umzubenennen. 
 
@@ -271,10 +271,15 @@ Ausführen (X): Unter Unix/Linux kann ein Programm nur ausführt werden, wenn di
 Ordner und Files sind jeweils in drei verschiedenen Berechtigungsgruppen eingeteilt. Der Buchstabe definiert den Dateityp. Die nächsten drei sind die Berechtigung für den File/Directory owner. In der mitte findet man die Berechtigungen für eine definierte Gruppe und die letzten drei Buchstaben bestimmten die Berechtigungen für jeden anderen User auf dem System.
 
 Visuelle Darstellung:
+
 ![File/Direcotry Permission Settings](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoRC3ndHT7osbq6wVK2jB1SUBti0JPpYerSzXqJEkvJ2TXDi0Ybg)
 
 *Commands*
 | Command | Bedeutung |
+| ---- | ---- |
+| chmod | Dateirechte anpassen | 
+| chown | Dateibesitzer ändern |
+| chgrp | Dateigruppe ändern |
 
 ### Zugang mit SSH-Tunnel abgesichert
 ***
