@@ -1,8 +1,8 @@
 FROM ubuntu:14.04
 
 # root Password setzen, damit kein Dialog erscheint und die Installation haengt!
-RUN echo 'mysql-server mysql-server/root_password password S3cr3tp4ssw0rd' | debconf-set-selections 
-RUN echo 'mysql-server mysql-server/root_password_again password S3cr3tp4ssw0rd' | debconf-set-selections 
+RUN echo 'mysql-server mysql-server/root_password password Server.22' | debconf-set-selections 
+RUN echo 'mysql-server mysql-server/root_password_again password Server.22' | debconf-set-selections 
 
 # Installation
 RUN apt-get update && apt-get install -y mysql-server

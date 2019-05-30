@@ -261,34 +261,148 @@ Das Standard-Firewall-Konfigurationstool für Ubuntu ist ufw. ufw wurde entwicke
 ### Sicherheitsmassnahmen sind dokumentiert
 ***
 
+
 ## K5 <a name="k5"></a>
 > [⇧ **Nach oben**](#inhaltsverzeichnis)
-### Kreativität
+### LB2 
 ***
 
 Mein Ziel ist es eine Automatisierte Containerumgebung mittels Vagrant und Jenkins aufzusetzen. Dazu soll automatisch auf einer VM die benötigten Docker Images installiert und eingerichtet werden. Zusätzlich steht eine MySQL Datenbank bereit auf einer anderen VM, damit die Erweiterungsmöglichkeiten zur Verfügung stehen (OS-Ticket, MyPHPAdmin Interface, etc.)
-### Komplexität
-***
 
-Es müssen sehr viele Files vorher erzeugt werden, welche alle miteinander reagieren und arbeiten und darum würde ich dieses Projekt Komplex einrichten. Da meine Erfahrungen mit Container (Docker) ziemlich frisch sind, ist es auch schwierig die Kombination zwischen Container und Vagrant zu finden. Vagrant habe ich im Modul vorher nur für die Erstellung von VMs genutzt. Nun versuche ich auch komplexere Umgebungen auch mitzubeziehen.
+Es müssen viele Files vorher erzeugt werden, welche zusammenarbeiten müssen und darum würde ich dieses Projekt als "Komplex" einstufen. Da meine Erfahrungen mit Container (Docker) ziemlich frisch sind, ist es auch schwierig die Kombination zwischen Container und Vagrant zu finden. Vagrant habe ich im Modul vorher nur für die Erstellung von VMs genutzt. Nun versuche ich auch komplexere Umgebungen auch miteinzubeziehen.
 
-### Umfang
-***
+Das Projekt ist anspruchsvoll, jedoch sind viele Scripts geschrieben mit simplen eingaben. Dies ist jedoch das Ziel - eine komplexe Netzwerkumgebung in einer simplen Containerumgebung umzubauen.
 
-Das Projekt ist anspruchsvoll, jedoch kann alles simple umgesetzt werden. Dies ist jedoch das Ziel - eine komplexe Netzwerkumgebung in einer simplen Containerumgebung einzubauen.
+#### Docker Befehle
+
+| Commands | Bedeutung |
+| ---- | ---- |
+| docker built <Source> | Erstellt ein Docker image |
+| docker images | Zeigt alle verfügbare Docker images |
+| docker rmi <Image> | Löscht ein Docker image |
+| docker run <Image> | startet ein Docker image |
+| docker exec -it <Container> /bin/bash | Eploriert ein Container |
 
 ### Cloud-Integration
 ***
 
 Eine Vagrantcloud Umgebumg wurde aufgesetzt.
 
+#### Vagrantfile
+Das vollständige Vagrantfile sieht so aus:
+
+    ```
+        Vagrant.configure("2") do |config|
+            # Jenkins and Apache Virtual Machine
+            config.vm.define "web01" do |web01|
+                web01.vm.box = "ubuntu/xenial64"
+                
+                # Portforwarding, Jenkins 8082, http 80, sql 3306
+                web01.vm.network "forwarded_port", guest:80, host:8080, auto_correct: true
+                web01.vm.network "forwarded_port", guest:8081, host:8081, auto_correct: true
+                web01.vm.network "forwarded_port", guest:8082, host:8082, auto_correct: true
+                web01.vm.network "forwarded_port", guest:3306, host:3306, auto_correct: true  
+                
+                # Enabling a forwarded Portrange for Jenkins
+                for i in 32760..32780
+                        web01.vm.network :forwarded_port, guest: i, host: i
+                end	
+                
+                # Docker Provisioner (Install image)
+                web01.vm.provision "docker" do |d|
+                    d.pull_images "ubuntu:14.04"
+                end	
+
+                # Hostname
+                web01.vm.hostname = "ch-web01"
+
+                # Vagrant Name
+                web01.vm.provider "virtualbox" do |v|
+                    v.name = "ch-web01"
+                end
+
+                #Shell Script Part Updating APT Repository and create Synch Folder
+                web01.vm.provision :shell, inline: <<-SHELL
+                    sudo apt-get update
+                    sudo apt-get -y install apache2
+                    mkdir /etc/shared
+                    sh /vagrant/scripts/ufw.sh
+                    sh /vagrant/scripts/docker_web01.sh
+                SHELL
+                web01.vm.synced_folder "./shared_web01", "/etc/shared"
+                
+                # Firewall Configurations
+                web01.vm.provision "shell", path: "scripts/ufw.sh"
+
+                # Docker Configurations
+                web01.vm.provision "shell", path: "scripts/docker.sh"
+            end
+
+            # MySQL Virtual Machine
+            config.vm.define "db01" do |db01|
+                db01.vm.box = "ubuntu/xenial64"
+                
+                # Portforwarding, Jenkins 8082, http 80, sql 3306
+                db01.vm.network "forwarded_port", guest:80, host:8080, auto_correct: true
+                db01.vm.network "forwarded_port", guest:8081, host:8081, auto_correct: true
+                db01.vm.network "forwarded_port", guest:8082, host:8082, auto_correct: true
+                db01.vm.network "forwarded_port", guest:3306, host:3306, auto_correct: true  
+                
+                db01.vm.provision :shell, inline: <<-SHELL
+                    sudo apt-get update
+                    sudo apt-get -y install apache2
+                    sh /vagrant/scripts/docker_db01.sh 
+                SHELL
+                db01.vm.synced_folder "./shared_db01", "/etc/shared"
+
+                # Docker Provisioner (Install image)
+                db01.vm.provision "docker" do |d|
+                    d.pull_images "ubuntu:14.04"
+                end
+
+                # Hostname
+                db01.vm.hostname = "ch-db01"
+
+                # Virtualbox Name
+                db01.vm.provider "virtualbox" do |v|
+                    v.name = "ch-db01"
+                end	
+            end
+        end
+    ```
+
 ### Authentifizierung und Autorisierung via LDAP
 ***
+
+
 ### Übungsdokumentation als Vorlage für Modul-Unterlagen erstellt
 *** 
+Sehr hilfreich waren die GitHub Dokumentationen und Files, um die Umgebung aufzubauen.
+
+[mc-b M300](https://github.com/mc-b/M300)
+
 ### Persönlicher Lernentwicklung
 ***
+
+Mit diesem Projekt wurde Docker, Vagrant, Virtualbox, MySQL, Jenkins und Apache aufgesetzt. Ich habe für jedes bestimmtes Thema mehr Wissen gewonnen.
+
+*Vagrant*
+Mit Vagrant konnte ich mehrere VMs einrichten, welche für Einzelne Jobs zuständig waren. Damit wurden um genauer zu sein, zwei VMs eingerichtet. Eine war für den Webserver und das Jenkins verantwortlich und die andere für die MySQL-Datenbank.
+
+*Virtualbox*
+Die VMs wurden in VirtualBox erstellt. Da ich VirtualBox schon auf dem Mac besitze, war die Umsetzung auf dieser Ebene nicht all zu komplex. Jedoch erfuhr ich, wie ich Vagrant mit VirtualBox zusammen einsetzen kann.
+
+*MySQL*
+Auf ch-db01 wurde der MySQL Container erstellt. Ich weiss nun, wie ich eine Datenbank in eine einzelnen Container verpacke, anstatt eine eigene Maschine einzurichten.
+
+*Jenkins*
+Jenkins ist ein DevOps tool, welches ermöglicht Coninues integration in einer Umgebung einzurichten. Sprich, es können verschiedene DevOps phasen einrichten, um automatisierte Lösungen besser auszurollen. Das Tool wurde auf dem ch-web01 Server eingerichtet. Die Applikation läuft in einem Container.
+
+*Apache*
+Der Webserver wurde auf dem ch-web01 eingerichtet
+
 ### Vergleich Vorwissen - Wissenszuwachs
 ***
+
 ### Reflexion
 ***
