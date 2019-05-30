@@ -15,6 +15,10 @@ Dokumentation Modul 300
 ***
 Virtual Box ist eine Virtualisierungssoftware von Oracle. Wir benutzen dieses Programm, um mit Vagrant VMs zu erstellen.
 
+ Oracle VM VirtualBox ist ziemlich einfach, aber auch sehr leistungsfähig. Es kann überall laufen, von kleinen Embedded-Systemen oder Desktop-Computern bis hin zu Rechenzentrumsbereitstellungen und sogar Cloud-Umgebungen. 
+
+Auf jeder einzelnen virtuellen Maschine kann 
+
 Auf folgender Seite kann VirtualBox installiert werden: https://www.virtualbox.org/wiki/Downloads
 
 #### Installation
@@ -29,6 +33,8 @@ Auf folgender Seite kann VirtualBox installiert werden: https://www.virtualbox.o
 ***
 Vagrant ist ein Tool zum Erstellen und Verwalten von Umgebungen virtueller Maschinen in einem einzigen Workflow.
 
+Vagrant bietet einfach zu konfigurierende Arbeitsumgebungen, die auf  einem einzigen Workflow gesteuert werden, um die Produktivität und Flexibilität eines wiederholendes Vorgehen zu automatisieren.
+
 Auf folgender Seite kann Vagrant installiert werden: https://www.vagrantup.com/downloads.html
 
 #### Installation
@@ -41,11 +47,13 @@ Auf folgender Seite kann Vagrant installiert werden: https://www.vagrantup.com/d
 ***
 Visualstudio Code ist ein Editor für verschiedene Programmiersprachen. Es können Externsions installiert werden, um weitere Sprachen darin zu programmieren.
 
+Mit dem Editor kann man eine beliebige Anzahl von Erweiterungen von Drittanbietern installieren. Während die meisten Szenarien "out of the box" ohne Konfiguration funktionieren, ist es möglich die Programme auf seine eigene individuellen Erlebnisse anzupassen. VS Code ist ein Open-Source-Projekt, so dass man auch vieles auf Github mit beitragen kann.
+
 Auf der folgender Seite kann Visualstudio Code installiert werden: https://code.visualstudio.com/
 
 ### SSH-Key für Client erstellt
 ***
-Mittels eines SSH-Keys ist es möglich auf einem Server zuzugreifen. Dazu führt man folgende Schritte aus.
+Mittels eines SSH-Keys ist es möglich auf einem Server zuzugreifen. Heute wird das SSH-Protokoll häufig verwendet, um sich von einem System in ein anderes einzuloggen, und seine starke Verschlüsselung macht es ideal, um Aufgaben wie die Ausgabe von Remote-Befehlen und die Remote-Verwaltung der Netzwerkinfrastruktur und anderer wichtiger Systemkomponenten auszuführen. Um das SSH-Protokoll verwenden zu können, müssen einige Softwarekomponenten installiert werden. Dazu führt man folgende Schritte aus.
 
 1. Terminal (Bash) öffnen
 2. Folgenden Befehl mit der Account-E-Mail von GitHub einfügen: 
@@ -66,11 +74,15 @@ Mittels eines SSH-Keys ist es möglich auf einem Server zuzugreifen. Dazu führt
         Enter same passphrase again: [Passwort wiederholen]
     ```
 
+Der SSH Key kann im GitHub hinterlegt werden, um Repositorys lokal über eine SSH Verbindung zu klonen
+
 ## K2 <a name="k2"></a>
 > [⇧ **Nach oben**](#inhaltsverzeichnis)
 
 ### GitHub oder Gitlab-Account erstellt
 ***
+Die Leistung von Git sind im Vergleich zu vielen Alternativen sehr stark. Das Einbringen neuer Änderungen, das Branchen, Merging und Vergleichen vergangener Versionen sind leistungsoptimiert.
+
 Um einen GitHub Account zu erstellen, öffnet man die Seite https://github.com/join?source=header-home und folgt dort die einzelnen Steps
 1. Username auswählen
 2. Eine gültige E-Mailadresse eingeben
@@ -102,7 +114,7 @@ Mardown All in One von Yu Zhang
 
 ### Dokumentation ist als Markdown vorhanden
 ***
-Die Dokumentation wurde im VisualStudio Code mit der Extension MarkdownAllInOne geschrieben.
+Die Dokumentation wurde im VisualStudio Code mit der Extension Markdown All In One geschrieben.
 ![MarkdownDokumentation](images/MarkdownDokumentaion.png)
 
 ## K3 <a name="k3"></a>
