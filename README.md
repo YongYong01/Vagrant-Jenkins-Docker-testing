@@ -41,7 +41,6 @@ Auf folgender Seite kann Vagrant installiert werden: https://www.vagrantup.com/d
 ***
 1. Die Installationsdatei muss ausgewählt und ausgeführt werden.
 2. Danach kann man die normale Installation durchführen und wählt den Pfad aus, wo Vagrant installiert werden soll
-![Step2Vagrant](https://i.ytimg.com/vi/RhhF8Yh7OnE/maxresdefault.jpg)
 
 ### Visualstudio-Code
 ***
@@ -141,7 +140,6 @@ Die Dokumentation wurde im VisualStudio Code mit der Extension Markdown All In O
 ### Andere, vorgefertigte vm auf eigenem Notebook aufgesetzt
 ***
 Man kann von der Seite https://app.vagrantup.com/boxes/search?utf8=%E2%9C%93&sort=downloads&provider=&q= verschiedene VM Boxen herunterladen, um einzelne Vagrantmaschinen zu installieren und einzurichten.
-![VagrantBoxesInstall](images/VagrantBoxesInstall.png)
 1. Nun kann man im Terminal folgenden Befehl eingeben, um die Debian Box zu installieren
     ```
         vagrant box add debian/jessie64
@@ -232,10 +230,12 @@ Das Standard-Firewall-Konfigurationstool für Ubuntu ist ufw. ufw wurde entwicke
 | ufw disable | Deaktiviert die Firewall |
 | ufw allow | Öffnet einen Port | 
 | ufw deny | Blockiert einen Port |
-| ufw reject | Blockiert einen Port von ausser (Absender) |
+| ufw reject | Blockiert einen Port ausserhalb (Absender) |
 
 ### Reverse-Proxy eingerichtet
 ***
+
+
 ### Benutzer- und Rechtevergabe ist eingerichtet
 ***
 ### Zugang mit SSH-Tunnel abgesichert
@@ -247,14 +247,23 @@ Das Standard-Firewall-Konfigurationstool für Ubuntu ist ufw. ufw wurde entwicke
 > [⇧ **Nach oben**](#inhaltsverzeichnis)
 ### Kreativität
 ***
+
+Mein Ziel ist es eine Automatisierte Containerumgebung mittels Vagrant und Jenkins aufzusetzen. Dazu soll automatisch auf einer VM die benötigten Docker Images installiert und eingerichtet werden. Zusätzlich steht eine MySQL Datenbank bereit auf einer anderen VM, damit die Erweiterungsmöglichkeiten zur Verfügung stehen (OS-Ticket, MyPHPAdmin Interface, etc.)
 ### Komplexität
 ***
+
+Es müssen sehr viele Files vorher erzeugt werden, welche alle miteinander reagieren und arbeiten und darum würde ich dieses Projekt Komplex einrichten. Da meine Erfahrungen mit Container (Docker) ziemlich frisch sind, ist es auch schwierig die Kombination zwischen Container und Vagrant zu finden. Vagrant habe ich im Modul vorher nur für die Erstellung von VMs genutzt. Nun versuche ich auch komplexere Umgebungen auch mitzubeziehen.
+
 ### Umfang
 ***
-### Umsetzung eigener Ideen
-***
+
+Das Projekt ist anspruchsvoll, jedoch kann alles simple umgesetzt werden. Dies ist jedoch das Ziel - eine komplexe Netzwerkumgebung in einer simplen Containerumgebung einzubauen.
+
 ### Cloud-Integration
 ***
+
+Eine Vagrantcloud Umgebumg wurde aufgesetzt.
+
 ### Authentifizierung und Autorisierung via LDAP
 ***
 ### Übungsdokumentation als Vorlage für Modul-Unterlagen erstellt
