@@ -225,6 +225,21 @@ Man kann von der Seite https://app.vagrantup.com/boxes/search?utf8=%E2%9C%93&sor
     |+----------------------------------------------------------------------------------------------+|
     +------------------------------------------------------------------------------------------------+
 
+*ch-web01*
+
+Funktion: Dieser Server verwaltet den Webserver und den Jenkins Server.
+Betriebssystem: Ubuntu 16.04 LTS
+Inhalt:
+* Jenkins (DevOps Tool)
+* Apache Webserver
+
+*ch-db01*
+
+Funktion: Dieser Server verwaltet den MySQL Server
+Betriebssystem: Ubuntu 16.04 LTS
+Inhalt:
+* MySQL
+
 ## K4 <a name="k4"></a>
 > [⇧ **Nach oben**](#inhaltsverzeichnis)
 
@@ -282,11 +297,60 @@ Visuelle Darstellung:
 | chown | Dateibesitzer ändern |
 | chgrp | Dateigruppe ändern |
 
+*Gruppen*
+
+Falls man in verschiedenen Team auf einem System arbeitet, dann ergibt es Sinn gewisse Gruppen zu erstellen. Beim Apache gibt es Beispielsweise eine www-data Group, welche automatisch bei der Installation erstellt wird, um Webadministratoren von den anderen Entwickler abzspalten.
+Diese Gruppe kann man anwenden um vollen Zugriff auf jegliche Apache Konfigurationsdateien zu vergeben.
+
 ### Zugang mit SSH-Tunnel abgesichert
 ***
+
+1. SSH Server installieren
+
+    ```
+        sudo apt-get install openssh-server
+    ```
+2. Firewall auf SSH überprüfen
+
+    ```
+        vagrant@ch-web01:~$ netstat -tulpn
+        (Not all processes could be identified, non-owned process info
+        will not be shown, you would have to be root to see it all.)
+        Active Internet connections (only servers)
+        Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+        tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -               
+        tcp6       0      0 :::8080                 :::*                    LISTEN      -               
+        tcp6       0      0 :::80                   :::*                    LISTEN      -               
+        tcp6       0      0 :::8082                 :::*                    LISTEN      -               
+        tcp6       0      0 :::22                   :::*                    LISTEN      -               
+        udp        0      0 0.0.0.0:68              0.0.0.0:*                           -               
+    ```
+3. SSH Service starten
+
+    ```
+        service ssh start
+    ```
+
+Die Einstellungen können natürlich schon vorher im Vagrantfile eingerichtet werden.
+
 ### Sicherheitsmassnahmen sind dokumentiert
 ***
 Es existiert eine UFW Firewall, welche alle ungebrauchten Ports blockiert. Für Jenkins und MySQL wurde ein kryptisches Passwort erstellt und zusätzlich User mit Read-Only Berechtigungen.
+
+*Firewall Regelwerk*
+
+| Source | Destination | Protocol | Source Port | Destination Port |
+| ---- | ---- | ---- | ---- | ---- |
+| 10.0.2.15 | any | TCP | any | 80 |
+| 10.0.2.15 | any | TCP | any | 443 |
+| 10.0.2.15 | any | TCP/UDP | any | 8080 |
+| 10.0.2.15 | any | TCP/UDP | any | 8081 |
+| 10.0.2.15 | any | TCP/UDP | any | 8082 |
+| 10.0.2.15 | any | TCP/UDP | any | 3306 |
+| 10.0.2.16 | any | TCP | any | 80 |
+| 10.0.2.16 | any | TCP | any | 443 |
+| 10.0.2.16 | any | TCP/UDP | any | 3306 |
+
 
 
 ## K5 <a name="k5"></a>
@@ -412,7 +476,7 @@ Sehr hilfreich waren die GitHub Dokumentationen und Files, um die Umgebung aufzu
 ### Persönlicher Lernentwicklung
 ***
 
-Mit diesem Projekt wurde Docker, Vagrant, Virtualbox, MySQL, Jenkins und Apache aufgesetzt. Ich habe für jedes bestimmtes Thema mehr Wissen gewonnen.
+Mit diesem Projekt wurde Docker, Vagrant, Virtualbox, MySQL, Jenkins und Apache aufgesetzt. Ich habe für jedes bestimmtes Thema mehr Wissen angeeignet.
 
 *Vagrant*
 Mit Vagrant konnte ich mehrere VMs einrichten, welche für Einzelne Jobs zuständig waren. Damit wurden um genauer zu sein, zwei VMs eingerichtet. Eine war für den Webserver und das Jenkins verantwortlich und die andere für die MySQL-Datenbank.
@@ -435,7 +499,7 @@ Der Webserver wurde auf dem ch-web01 eingerichtet. Die Applikation wurde in eine
 
     ```
         http://localhost:8080
-    ```
+    ```    
 
 ### Vergleich Vorwissen - Wissenszuwachs
 ***
@@ -444,7 +508,7 @@ Weiterhin kann ich auch eigene Mikroprozesse erstellen und diese Einsetzen.
 
 ### Reflexion
 ***
-Das Projekt konnte auch mir aufzeigen, dass persönlich eine unerforschte Welt der Systemtechnik existiert. Ich finde es gut, dass wir in diesem Modul eine starke Mischung aus skripten und systemverwaltung gelernt haben.
+Das Projekt konnte auch mir aufzeigen, dass persönlich eine unerforschte Welt der Systemtechnik existiert. Ich finde es gut, dass wir in diesem Modul eine starke Mischung aus skripten und systemverwaltung anschauen.
 Meine Modularbeit besitzt den Schwerpunkt Automatisation, darum musste ich auch mich wieder in das Skripting vertiefen. Auch wenn ich nicht allzuschwierige Skripte geschrieben habe, hatte ich trotzdem vieles dazugelernt.
 Sehr schwierig war es die Dockerfiles richtig einzurichten, da mir dies komplett neu war. Hilfreich waren zudem die einzelnen Bespielen im Modulrepo.
 
