@@ -227,16 +227,18 @@ Man kann von der Seite https://app.vagrantup.com/boxes/search?utf8=%E2%9C%93&sor
 
 *ch-web01*
 
-Funktion: Dieser Server verwaltet den Webserver und den Jenkins Server.
+Funktion: Dieser Server verwaltet den Webserver und den Jenkins Server.  
 Betriebssystem: Ubuntu 16.04 LTS
+
 Inhalt:
 * Jenkins (DevOps Tool)
 * Apache Webserver
 
 *ch-db01*
 
-Funktion: Dieser Server verwaltet den MySQL Server
+Funktion: Dieser Server verwaltet den MySQL Server  
 Betriebssystem: Ubuntu 16.04 LTS
+
 Inhalt:
 * MySQL
 
@@ -269,6 +271,7 @@ Das Standard-Firewall-Konfigurationstool für Ubuntu ist ufw. ufw wurde entwicke
 ***
 
 *Reverse Proxy*
+
 Mit einem Reverse Proxy können Systeme versteckt werden.
 
 ### Benutzer- und Rechtevergabe ist eingerichtet
@@ -507,15 +510,19 @@ Sehr hilfreich waren die GitHub Dokumentationen und Files, um die Umgebung aufzu
 Mit diesem Projekt wurde Docker, Vagrant, Virtualbox, MySQL, Jenkins und Apache aufgesetzt. Ich habe für jedes bestimmtes Thema mehr Wissen angeeignet.
 
 *Vagrant*
+
 Mit Vagrant konnte ich mehrere VMs einrichten, welche für Einzelne Jobs zuständig waren. Damit wurden um genauer zu sein, zwei VMs eingerichtet. Eine war für den Webserver und das Jenkins verantwortlich und die andere für die MySQL-Datenbank.
 
 *Virtualbox*
+
 Die VMs wurden in VirtualBox erstellt. Da ich VirtualBox schon auf dem Mac besitze, war die Umsetzung auf dieser Ebene nicht all zu komplex. Jedoch erfuhr ich, wie ich Vagrant mit VirtualBox zusammen einsetzen kann.
 
 *MySQL*
+
 Auf ch-db01 wurde der MySQL Container erstellt. Ich weiss nun, wie ich eine Datenbank in eine einzelnen Container verpacke, anstatt eine eigene Maschine einzurichten.
 
 *Jenkins*
+
 Jenkins ist ein DevOps tool, welches ermöglicht Coninues integration in einer Umgebung einzurichten. Sprich, es können verschiedene DevOps phasen einrichten, um automatisierte Lösungen besser auszurollen. Das Tool wurde auf dem ch-web01 Server eingerichtet. Die Applikation läuft in einem Container. Die Applikation kann geöffnet werden mit dem Port 8082.
 
     ```
@@ -523,6 +530,7 @@ Jenkins ist ein DevOps tool, welches ermöglicht Coninues integration in einer U
     ```
 
 *Apache*
+
 Der Webserver wurde auf dem ch-web01 eingerichtet. Die Applikation wurde in einem Container eingerichtet. Die Applikation kann erweitert werden, indem Webseiten noch hinzugefügt werden, von dem man aus alle Applikationen und Container von dort aus verwalten kann. Dazu hatte ich leider nicht genug Zeit. Darum läuft momentan die Standardindexseite von Apache auf Port 8080.
 
     ```
