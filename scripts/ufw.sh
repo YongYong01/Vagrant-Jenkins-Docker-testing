@@ -1,12 +1,13 @@
 #!/bin/sh
 
 # Enable Firewall
-sudo ufw enable
+sudo ufw -y enable
 
 # Allow a range of Firewall rules for Jenkins
 for i in 32760..32780
-	sudo ufw allow i
-end
+do
+	sudo ufw allow $i
+done
 
 # SSH
 sudo ufw allow 22
@@ -20,6 +21,7 @@ sudo ufw allow 443
 # Jenkins
 sudo ufw allow 8080
 sudo ufw allow 8082
+sudo ufw allow 50000
 
 # MySQL
 sudo ufw allow 3306
