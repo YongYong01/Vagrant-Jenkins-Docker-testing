@@ -13,7 +13,10 @@ Vagrant.configure("2") do |config|
 		for i in 32760..32780
 				web01.vm.network :forwarded_port, guest: i, host: i
 		end	
-		
+	
+		# Network web01	
+		web01.vm.network "private_network", ip: "192.168.0.3"		
+	
 		# Docker Provisioner (Install image)
 		web01.vm.provision "docker" do |d|
 			d.pull_images "ubuntu:14.04"
@@ -41,7 +44,7 @@ Vagrant.configure("2") do |config|
 		web01.vm.provision "shell", path: "scripts/ufw.sh"
 
 		# Docker Configurations
-		web01.vm.provision "shell", path: "scripts/docker.sh"
+		web01.vm.provision "shell", path: "scripts/docker_web01.sh"
 	end
 
 	# MySQL Virtual Machine
@@ -57,14 +60,21 @@ Vagrant.configure("2") do |config|
 		db01.vm.provision :shell, inline: <<-SHELL
 			sudo apt-get update
 			sudo apt-get -y install apache2
+			sh /vagrant/scripts/ufw.sh
 			sh /vagrant/scripts/docker_db01.sh 
 		SHELL
 		db01.vm.synced_folder "./shared_db01", "/etc/shared"
-
+		
+		# Network db01
+		db01.vm.network "private_network", ip: "192.168.0.4"
+		
 		# Docker Provisioner (Install image)
 		db01.vm.provision "docker" do |d|
 			d.pull_images "ubuntu:14.04"
 		end
+
+		# Docker Configurations
+                db01.vm.provision "shell", path: "scripts/docker_db01.sh"
 
 		# Hostname
 		db01.vm.hostname = "ch-db01"
