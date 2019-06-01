@@ -305,6 +305,7 @@ Diese Gruppe kann man anwenden um vollen Zugriff auf jegliche Apache Konfigurati
 *Commands*
 
 | Command | Bedeutung |
+| ---- | ---- |
 | id <Usnername> | Informationen über User |
 | adduser <Username> <Gruppe> | Einen User erstellen und zu einer Gruppe hinzufügen |
 | usermod  <Gruppe> <Username> | Einen User zu einer Gruppe hinzufügen |
@@ -363,6 +364,11 @@ Es existiert eine UFW Firewall, welche alle ungebrauchten Ports blockiert. Für 
 | 10.0.2.16 | any | TCP | any | 443 |
 | 10.0.2.16 | any | TCP/UDP | any | 3306 |
 
+*Gruppen und User*
+
+Es wurden zwei User erstellt. Der Backup User ist für den Notfallzugriff zuständig und besitzt SUDO Berechtigungen. Der Database User ist für die MySQL Zugänge zuständig.
+Beide User besitzen jeweils die www-data Gruppe um Web-Administrative Änderungen zu machen.
+Diese Standardkonfigurationen werden im config.sh Skript gemacht.
 
 
 ## K5 <a name="k5"></a>
