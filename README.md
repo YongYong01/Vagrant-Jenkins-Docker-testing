@@ -302,6 +302,18 @@ Visuelle Darstellung:
 Falls man in verschiedenen Team auf einem System arbeitet, dann ergibt es Sinn gewisse Gruppen zu erstellen. Beim Apache gibt es Beispielsweise eine www-data Group, welche automatisch bei der Installation erstellt wird, um Webadministratoren von den anderen Entwickler abzspalten.
 Diese Gruppe kann man anwenden um vollen Zugriff auf jegliche Apache Konfigurationsdateien zu vergeben.
 
+*Commands*
+
+| Command | Bedeutung |
+| id <Usnername> | Informationen über User |
+| adduser <Username> <Gruppe> | Einen User erstellen und zu einer Gruppe hinzufügen |
+| usermod  <Gruppe> <Username> | Einen User zu einer Gruppe hinzufügen |
+| groupmod <Gruppe> | Gruppe modifizieren |
+| deluser <Username> <Gruppe> | Einen User von einer Gruppe entfernen |
+| addgroup <Gruppe> | Gruppe erstellen |
+
+
+
 ### Zugang mit SSH-Tunnel abgesichert
 ***
 
@@ -310,7 +322,7 @@ Diese Gruppe kann man anwenden um vollen Zugriff auf jegliche Apache Konfigurati
     ```
         sudo apt-get install openssh-server
     ```
-2. Firewall auf SSH überprüfen
+2. Firewall auf SSH überprüfen (Port 22, STATE Listen)
 
     ```
         vagrant@ch-web01:~$ netstat -tulpn
@@ -399,7 +411,10 @@ Das vollständige Vagrantfile sieht so aus:
                 for i in 32760..32780
                         web01.vm.network :forwarded_port, guest: i, host: i
                 end	
-                
+            
+                # Network web01	
+                web01.vm.network "private_network", ip: "192.168.0.3"		
+            
                 # Docker Provisioner (Install image)
                 web01.vm.provision "docker" do |d|
                     d.pull_images "ubuntu:14.04"
@@ -427,7 +442,7 @@ Das vollständige Vagrantfile sieht so aus:
                 web01.vm.provision "shell", path: "scripts/ufw.sh"
 
                 # Docker Configurations
-                web01.vm.provision "shell", path: "scripts/docker.sh"
+                web01.vm.provision "shell", path: "scripts/docker_web01.sh"
             end
 
             # MySQL Virtual Machine
@@ -443,14 +458,21 @@ Das vollständige Vagrantfile sieht so aus:
                 db01.vm.provision :shell, inline: <<-SHELL
                     sudo apt-get update
                     sudo apt-get -y install apache2
+                    sh /vagrant/scripts/ufw.sh
                     sh /vagrant/scripts/docker_db01.sh 
                 SHELL
                 db01.vm.synced_folder "./shared_db01", "/etc/shared"
-
+                
+                # Network db01
+                db01.vm.network "private_network", ip: "192.168.0.4"
+                
                 # Docker Provisioner (Install image)
                 db01.vm.provision "docker" do |d|
                     d.pull_images "ubuntu:14.04"
                 end
+
+                # Docker Configurations
+                        db01.vm.provision "shell", path: "scripts/docker_db01.sh"
 
                 # Hostname
                 db01.vm.hostname = "ch-db01"
