@@ -60,6 +60,8 @@ Vagrant.configure("2") do |config|
 		db01.vm.provision :shell, inline: <<-SHELL
 			sudo apt-get update
 			sudo apt-get -y install apache2
+			sudo apt-get -y install docker
+			sudo apt-get -y install docker.io
 			sh /vagrant/scripts/ufw.sh
 			sh /vagrant/scripts/docker_db01.sh 
 		SHELL

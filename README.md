@@ -274,6 +274,35 @@ Das Standard-Firewall-Konfigurationstool für Ubuntu ist ufw. ufw wurde entwicke
 
 Mit einem Reverse Proxy können Systeme versteckt werden.
 
+Der Reverse Proxy wurde mit folgenden Befehlen eingerichtet.
+
+    ```
+        sudo apt-get install libxml2-dev
+
+        sudo a2enmod proxy
+        sudo a2enmod proxy_html
+        sudo a2enmod proxy_http 
+
+        sudo sed -i '1 i\ch-web01 localhost' /etc/apache2/apache2.conf
+
+        sudo service apache2 restart
+
+        sudo cp /vagrant/apache/000-default.conf /etc/apache2/sites-enabled/000-default.conf
+
+    ```
+
+im 000-default.conf wurde folgende Zeile hinzugefügt:
+
+        ProxyRequests Off
+        <Proxy *>
+                Order deny,allow
+                Allow from all
+        </Proxy>
+
+        # Weiterleitungen master
+        ProxyPass /master http://master
+        ProxyPassReverse /master http://master
+
 ### Benutzer- und Rechtevergabe ist eingerichtet
 ***
 
@@ -467,6 +496,8 @@ Das vollständige Vagrantfile sieht so aus:
                 db01.vm.provision :shell, inline: <<-SHELL
                     sudo apt-get update
                     sudo apt-get -y install apache2
+                    sudo apt-get -y install docker
+			        sudo apt-get -y install docker.io
                     sh /vagrant/scripts/ufw.sh
                     sh /vagrant/scripts/docker_db01.sh 
                 SHELL
