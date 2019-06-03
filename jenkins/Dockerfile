@@ -25,7 +25,7 @@ USER jenkins
 
 COPY plugins.txt /usr/share/jenkins/plugins.txt
 
-COPY updates/jenkins.war /usr/share/jenkins/jenkins.war
+COPY update/jenkins.war /usr/share/jenkins/jenkins.war
 
 VOLUME /vagrant
 

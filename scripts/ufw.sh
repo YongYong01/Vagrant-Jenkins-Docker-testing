@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Enable Firewall
-sudo ufw -y enable
+sudo ufw --force enable
 
 # Allow a range of Firewall rules for Jenkins
 for i in 32760..32780

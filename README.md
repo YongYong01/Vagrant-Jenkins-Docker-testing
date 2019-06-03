@@ -408,11 +408,11 @@ Diese Standardkonfigurationen werden im config.sh Skript gemacht.
 ### LB2 
 ***
 
-Mein Ziel ist es eine Automatisierte Containerumgebung mittels Vagrant und Jenkins aufzusetzen. Dazu soll automatisch auf einer VM die benötigten Docker Images installiert und eingerichtet werden. Zusätzlich steht eine MySQL Datenbank bereit auf einer anderen VM, damit die Erweiterungsmöglichkeiten zur Verfügung stehen (OS-Ticket, MyPHPAdmin Interface, etc.)
+Mein Ziel ist es eine Automatisierte Containerumgebung mittels Vagrant und Jenkins aufzusetzen. Dazu soll automatisch auf einer VM die benötigten Docker Images installiert und eingerichtet werden. Zusätzlich steht eine MySQL Datenbank bereit, damit die Erweiterungsmöglichkeiten zur Verfügung stehen (OS-Ticket, MyPHPAdmin Interface, etc.)
 
-Es müssen viele Files vorher erzeugt werden, welche zusammenarbeiten müssen und darum würde ich dieses Projekt als "Komplex" einstufen. Da meine Erfahrungen mit Container (Docker) ziemlich frisch sind, ist es auch schwierig die Kombination zwischen Container und Vagrant zu finden. Vagrant habe ich im Modul vorher nur für die Erstellung von VMs genutzt. Nun versuche ich auch komplexere Umgebungen auch miteinzubeziehen.
+Es müssen viele Files vorher erzeugt werden, welche zusammenarbeiten. Darum würde ich dieses Projekt als "Komplex" einstufen. Da meine Erfahrungen mit Container (Docker) ziemlich frisch sind, ist es auch schwierig die Kombination zwischen Container und Vagrant zu finden. Vagrant habe ich im Modul nur für die Erstellung von VMs genutzt. Nun versuche ich auch komplexere Umgebungen miteinzubeziehen.
 
-Das Projekt ist anspruchsvoll, jedoch sind viele Scripts geschrieben mit simplen eingaben. Dies ist jedoch das Ziel - eine komplexe Netzwerkumgebung in einer simplen Containerumgebung umzubauen.
+Das Projekt ist anspruchsvoll, jedoch sind viele Scripts mit simplen eingaben geschrieben. Dies ist jedoch das Ziel - eine komplexe Netzwerkumgebung in einer simplen Containerumgebung umzubauen.
 
 #### Docker Befehle
 
@@ -571,12 +571,12 @@ Der Webserver wurde auf dem ch-web01 eingerichtet. Die Applikation wurde in eine
 ### Vergleich Vorwissen - Wissenszuwachs
 ***
 Ich weiss nun, wie man mittels Vagrant automatisch VMs erstellen kann. Zusätzlich kann ich nun Container auf virtuelle Maschinen erstellen, welche mir ermöglichen Applikationen abzuspalten.
-Weiterhin kann ich auch eigene Mikroprozesse erstellen und diese Einsetzen.
+Weiterhin kann ich auch eigene Mikroprozesse erstellen und diese einsetzen.
 
 ### Reflexion
 ***
-Das Projekt konnte auch mir aufzeigen, dass persönlich eine unerforschte Welt der Systemtechnik existiert. Ich finde es gut, dass wir in diesem Modul eine starke Mischung aus skripten und systemverwaltung anschauen.
-Meine Modularbeit besitzt den Schwerpunkt Automatisation, darum musste ich auch mich wieder in das Skripting vertiefen. Auch wenn ich nicht allzuschwierige Skripte geschrieben habe, hatte ich trotzdem vieles dazugelernt.
+Das Projekt konnte mir aufzeigen, dass persönlich eine unerforschte Welt der Systemtechnik existiert. Ich finde es gut, dass wir in diesem Modul eine starke Mischung aus skripten und systemverwaltung anschauen.
+Meine Modularbeit besitzt den Schwerpunkt Automatisation, darum musste ich mich wieder in das Skripting vertiefen. Auch wenn ich nicht allzuschwierige Skripte geschrieben habe, hatte ich trotzdem vieles dazugelernt.
 Sehr schwierig war es die Dockerfiles richtig einzurichten, da mir dies komplett neu war. Hilfreich waren zudem die einzelnen Bespielen im Modulrepo.
 
 Mir hat das Modul sehr gefallen und ich konnte einiges dazulernen.
