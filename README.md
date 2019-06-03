@@ -557,7 +557,7 @@ Auf ch-db01 wurde der MySQL Container erstellt. Ich weiss nun, wie ich eine Date
 Jenkins ist ein DevOps tool, welches ermöglicht Coninues integration in einer Umgebung einzurichten. Sprich, es können verschiedene DevOps phasen einrichten, um automatisierte Lösungen besser auszurollen. Das Tool wurde auf dem ch-web01 Server eingerichtet. Die Applikation läuft in einem Container. Die Applikation kann geöffnet werden mit dem Port 8082.
 
     ```
-        http://localhost:8083
+        http://localhost:8082
     ```
 
 *Apache*
