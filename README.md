@@ -566,7 +566,7 @@ Der Webserver wurde auf dem ch-web01 eingerichtet. Die Applikation wurde in eine
 
 
     ```
-        http://192.168.0.3:8080
+        http://192.168.0.3:80
     ```    
 
 ### Vergleich Vorwissen - Wissenszuwachs
