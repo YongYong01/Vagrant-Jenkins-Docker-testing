@@ -17,8 +17,6 @@ sudo a2enmod proxy
 sudo a2enmod proxy_html
 sudo a2enmod proxy_http 
 
-sudo sed -i '1 i\ch-web01 localhost' /etc/apache2/apache2.conf
-
 sudo service apache2 restart
 
 sudo cp /vagrant/apache/000-default.conf /etc/apache2/sites-enabled/000-default.conf
