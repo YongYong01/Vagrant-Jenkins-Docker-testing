@@ -114,11 +114,10 @@ Da ich das Wahlmodul 901 besuche, weiss ich im Grunde, wie ich eigene Container 
 **Was ist Docker?**
 Docker ist ein Open-Source-Projekt zur Automatisierung der Bereitstellung von Anwendungen als portable Container, die in der Cloud oder vor Ort ausgeführt werden können. Docker-Image-Container können unter Linux und Windows ausgeführt werden. Windows-Bilder können jedoch nur auf Windows-Rechnern ausgeführt werden und Linux-Bilder können auf Linux-Rechnern und Windows-Rechnern, wobei der Host ein Server oder eine VM ist.
 
+
 Architektur Docker:
 
-![Docker Architecture](/images/DockerArchitecture.jpeg)
-
-![DockerArchitecture](/images/DockerArchitecture.jpeg)
+![DockerArchitecture](images/DockerArchitecture.jpeg)
 
 **Sicherheitseinstellungen Docker**
 
