@@ -58,6 +58,7 @@ Wenn man ein bestimmmtes GIT Repository forked, dann zieht man eine eigene Versi
 * [Git Buch](https://git-scm.com/book/de/v2)
 
 **Persönlicher Wissensstand**
+
 Da ich das Wahlmodul 901 besuche, weiss ich im Grunde, wie ich eigene Container erstellen kann. Linux benutze ich sowieso täglich und das Vagrant habe ich für die LB2 angewendet.
 
 ## K3 <a name="k3"></a> 
@@ -111,6 +112,7 @@ Da ich das Wahlmodul 901 besuche, weiss ich im Grunde, wie ich eigene Container 
 ## K4 <a name="k4"></a> 
 
 **Was ist Docker?**
+
 Docker ist ein Open-Source-Projekt zur Automatisierung der Bereitstellung von Anwendungen als portable Container, die in der Cloud oder vor Ort ausgeführt werden können. Docker-Image-Container können unter Linux und Windows ausgeführt werden. Windows-Bilder können jedoch nur auf Windows-Rechnern ausgeführt werden und Linux-Bilder können auf Linux-Rechnern und Windows-Rechnern, wobei der Host ein Server oder eine VM ist.
 
 
@@ -119,27 +121,57 @@ Architektur Docker:
 ![DockerArchitecture](images/DockerArchitecture.jpeg)
 
 **Sicherheitseinstellungen Docker**
+
 Für alle Applikationen kann ein andere Host Port weitergeleitet werden. Diese definiert man mit der Zeile EXPOSE.
 Anderweitige Einstellungen können vorgenommen werden, indem man einem User die Berechtigung gibt einen gewissen Container anzupassen.
 Sonst noch kann man Gruppeneinstellungen vornehmen, damit nur eine gewisse Benutzergruppe einen Container verwalten kann.
 
 **Was ist Ghost?**
+
 Ghost ist eine vollständig Open Source, anpassungsfähige Plattform für den Aufbau und Betrieb einer modernen Online-Publikation. 
 
 Ghost Architektur:
 
 ![Ghost Architecture](images/GhostArchitecture.png)
 
+**Service Überwachung**
+
+Docker Container kann man mit verschiedenen Befehlen überwachen. Zum einen kann man alle Docker Prozesse mittels docker ps anzeigen und falls man alle Container auflisten will, dann gibt es den Befehl Docker Container list.
+Mit Docker logs zeigt man aktive statistiken eines Containers auf. Zusätzlich zeigt er die stderr und stdout statistiken raus.
+
+*stderr*
+
+Stderr, auch bekannt als Standardfehler, ist der Standard-Dateideskriptor, mit dem ein Prozess Fehlermeldungen schreiben kann.
+
+In Unix-ähnlichen Betriebssystemen wie Linux durch den POSIX-Standard definiert..
+
+Im Terminal wird der Standardfehler standardmässig auf dem Bildschirm des Benutzers angezeigt.
+
+*stdout*
+
+Stdout, auch bekannt als Standardausgabe, ist der Standard-Dateideskriptor, mit dem ein Prozess die Ausgabe schreiben kann.
+
+Im Terminal wird die Standardausgabe standardmässig auf dem Bildschirm des Benutzers angezeigt.
+
 ## K5 <a name="k5"></a> 
+> [⇧ **Nach oben**](#inhaltsverzeichnis)
+
 
 **Vergleich Vorwissem**
 
+Ich habe im groben Zügen das gleiche aufgesetzt wie in der LB2. Jedoch weiss ich nun wie ich meine Docker Container überwachen kann und aktive Benachrichtigungen dazu einschalte. Ausserdem habe ich neu das Blogging Tool Ghost aufgesetzt.
 
 **Reflexion**
+In diesem Projekt konnte ich eher die Sicherheitsaspekte von Containers anschauen. Die neuerlernten Techniken werden mir auch zukünftig in Projekten helfen.
+
 
 ## K6 <a name="k6"></a> 
+> [⇧ **Nach oben**](#inhaltsverzeichnis)
+
 
 **CMS Ghost**
+Mit Ghost konnte ich eine Blogging Seite einrichten.
 
+![GhostIntroduction](images/GhostIntroduction.png)
 
 [Documentation Ghost](https://ghost.org/docs/)
