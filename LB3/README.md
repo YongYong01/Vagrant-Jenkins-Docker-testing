@@ -99,6 +99,117 @@ Da ich das Wahlmodul 901 besuche, weiss ich im Grunde, wie ich eigene Container 
     |+----------------------------------------------------------------------------------------------+|
     +------------------------------------------------------------------------------------------------+
 
+**Vagrantfile**
+
+    Vagrant.configure("2") do |config|
+        # Jenkins and Apache Virtual Machine
+        config.vm.define "web01" do |web01|
+            web01.vm.box = "ubuntu/xenial64"
+            
+            # Portforwarding, Jenkins 8082, http 80, sql 3306
+            web01.vm.network "forwarded_port", guest:80, host:8080, auto_correct: true
+            web01.vm.network "forwarded_port", guest:8081, host:8081, auto_correct: true
+            web01.vm.network "forwarded_port", guest:8082, host:8082, auto_correct: true
+            web01.vm.network "forwarded_port", guest:3306, host:3306, auto_correct: true 
+            web01.vm.network "forwarded_port", guest:2368, host:2368, auto_correct: true
+            web01.vm.network "forwarded_port", guest:3001, host:3001, auto_correct: true 
+            
+            # Enabling a forwarded Portrange for Jenkins
+            for i in 32760..32780
+                    web01.vm.network :forwarded_port, guest: i, host: i
+            end	
+        
+            # Network web01	
+            web01.vm.network "private_network", ip: "192.168.0.3"		
+        
+            # Docker Provisioner (Install image)
+            web01.vm.provision "docker" do |d|
+                d.pull_images "ubuntu:14.04"
+            end	
+
+            # Hostname
+            web01.vm.hostname = "ch-web01"
+
+            # Vagrant Name
+            web01.vm.provider "virtualbox" do |v|
+                v.name = "ch-web01"
+            end
+
+            #Shell Script Part Updating APT Repository and create Synch Folder
+            web01.vm.provision :shell, inline: <<-SHELL
+                sudo apt-get update
+                sudo apt-get -y install ufw
+                sudo apt-get -y install docker
+                sudo apt-get -y install docker.io
+                sh /vagrant/scripts/docker_web01.sh
+                sh /vagrant/ghost/ghost_create.sh
+            SHELL
+            
+        end
+
+        # MySQL Virtual Machine
+        config.vm.define "db01" do |db01|
+            db01.vm.box = "ubuntu/xenial64"
+            
+            # Portforwarding, Jenkins 8082, http 80, sql 3306
+            db01.vm.network "forwarded_port", guest:80, host:8080, auto_correct: true
+            db01.vm.network "forwarded_port", guest:8081, host:8081, auto_correct: true
+            db01.vm.network "forwarded_port", guest:8082, host:8082, auto_correct: true
+            db01.vm.network "forwarded_port", guest:3306, host:3306, auto_correct: true  
+            
+            db01.vm.provision :shell, inline: <<-SHELL
+                sudo apt-get update
+                sudo apt-get -y install ufw
+                sudo apt-get -y install docker
+                sudo apt-get -y install docker.io
+            SHELL
+            
+            # Network db01:
+            db01.vm.network "private_network", ip: "192.168.0.4"
+            
+            # Docker Provisioner (Install image)
+            db01.vm.provision "docker" do |d|
+                d.pull_images "ubuntu:14.04"
+            end
+
+
+            # Hostname
+            db01.vm.hostname = "ch-db01"
+
+            # Virtualbox Name
+            db01.vm.provider "virtualbox" do |v|
+                v.name = "ch-db01"
+            end	
+        end
+    end
+
+**Standardconfig für Ghost**
+
+    version: '3.1'
+
+    services:
+
+    ghost:
+        image: ghost:1-alpine
+        restart: always
+        ports:
+        - 8080:2368
+        environment:
+        # see https://docs.ghost.org/docs/config#section-running-ghost-with-config-env-variables
+        database__client: mysql
+        database__connection__host: db
+        database__connection__user: root
+        database__connection__password: example
+        database__connection__database: ghost
+
+    db:
+        image: mysql:5.7
+        restart: always
+        environment:
+        MYSQL_ROOT_PASSWORD: Server.22
+
+
+
 #### Docker Befehle
 
 | Command | Bedeutung |
@@ -168,6 +279,38 @@ In diesem Projekt konnte ich eher die Sicherheitsaspekte von Containers anschaue
 ## K6 <a name="k6"></a> 
 > [⇧ **Nach oben**](#inhaltsverzeichnis)
 
+**Image Bereitstellung**
+Beispiel von mc-b/m300
+
+    FROM ubuntu:14.04
+
+    RUN apt-get update
+    RUN apt-get -q -y install apache2 
+
+    # Konfiguration Apache
+    ENV APACHE_RUN_USER www-data
+    ENV APACHE_RUN_GROUP www-data
+    ENV APACHE_LOG_DIR /var/log/apache2
+
+    RUN mkdir -p /var/lock/apache2 /var/run/apache2
+
+    EXPOSE 80
+
+    VOLUME /var/www/html
+
+    CMD /bin/bash -c "source /etc/apache2/envvars && exec /usr/sbin/apache2 -DFOREGROUND"
+
+**Kubernetes Übung**
+Damit kann man eine Kubernetesumgebung mit zusätzlichem Frontend einrichten.
+
+git clone https://github.com/mc-b/lernkube
+cd lernkube
+git clone https://github.com/mc-b/iot.kafka
+cp templates/MISEGR.yaml config.yaml
+vagrant plugin install vagrant-disksize
+vagrant up
+source kubeenv
+kubectlapply -f misegr/ewolff/ms-kubernetes/
 
 **CMS Ghost**
 Mit Ghost konnte ich eine Blogging Seite einrichten.
