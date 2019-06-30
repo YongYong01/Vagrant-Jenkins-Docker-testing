@@ -82,7 +82,7 @@ Docker ist ein Open-Source-Projekt zur Automatisierung der Bereitstellung von An
 
 Architektur Docker:
 
-![Docker Architecture](/images/DockerArchitecture.jpeg)
+![Docker Architecture](images/DockerArchitecture.jpeg)
 
 **Sicherheitseinstellungen Docker**
 
@@ -92,7 +92,7 @@ Architektur Docker:
 
 Ghost Architektur:
 
-![Ghost Architecture](/images/GhostArchitecture.png)
+![Ghost Architecture](images/GhostArchitecture.png)
 
 ## K5 <a name="k5"></a> 
 
