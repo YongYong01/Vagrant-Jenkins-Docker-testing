@@ -418,7 +418,7 @@ Das Projekt ist anspruchsvoll, jedoch sind viele Scripts mit simplen eingaben ge
 
 | Command | Bedeutung |
 | ---- | ---- |
-| docker built "Source" | Erstellt ein Docker image | 
+| docker build "Source" | Erstellt ein Docker image | 
 | docker images | Zeigt alle verfügbare Docker images |
 | docker rmi "image" | Löscht ein Docker image |
 | docker run "image" | startet ein Docker image |
