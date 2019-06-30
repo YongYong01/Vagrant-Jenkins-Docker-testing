@@ -21,8 +21,42 @@ Die Umgebung wurde bereits in der LB2 eingerichtet und eine Dokumentation findet
 
 ## K2 <a name="k2"></a> 
 > [⇧ **Nach oben**](#inhaltsverzeichnis)
+
 Die einzelnen Git Dokumentationen sind in der LB2-Arbeit zu finden unter folgendem Link:
 ![K2 Dokumentation LB2](https://github.com/YongYong01/TBZM300/tree/master/LB2#k2-)
+
+**Git**
+
+**Branch** 
+
+Ein Branch ist eine isolierte Entwicklungszone. Hier testet man einzelne Skripts oder Programme bevor sie in die Produktion kommen.
+Man kann Beispielsweise eine Entwicklungszone mit git branch "Name" einrichten und von dort aus ausserhalb der Produktiven Zone arbeiten. Da man getrennt ist, wird die "master" Umgebung nicht beinträchtig. 
+
+
+**Tags** 
+
+Tags sind Referenzen für eine bestimmte Version einer GIT Datei
+
+
+**Forks** 
+
+Wenn man ein bestimmmtes GIT Repository forked, dann zieht man eine eigene Version auf das eigene GIT
+
+
+**Commands**
+| Commands | Bedeutung |
+| -------------- | -------------- |
+| git branch | Mit diesem Befehl listet man alle Branches im eigenem Repo auf. Ebenfalls ist es möglich eigene Branches zu erstellen oder zu dem genannten Branch zu wechseln |
+| git checkout | Mit diesem Befehl wechselt man einen Branch |
+| git commit | Damit ruft man eine Bestätigung für eine gespeicherte Aktion aus |
+| git clone | Mit diesem Befehl klont man lokal ein Repository aus einem Git |
+
+
+
+## Links
+
+* [Git scm Basic Branches](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging) 
+* [Git Buch](https://git-scm.com/book/de/v2)
 
 **Persönlicher Wissensstand**
 Da ich das Wahlmodul 901 besuche, weiss ich im Grunde, wie ich eigene Container erstellen kann. Linux benutze ich sowieso täglich und das Vagrant habe ich für die LB2 angewendet.
@@ -82,7 +116,9 @@ Docker ist ein Open-Source-Projekt zur Automatisierung der Bereitstellung von An
 
 Architektur Docker:
 
-![Docker Architecture](images/DockerArchitecture.jpeg)
+![Docker Architecture](/images/DockerArchitecture.jpeg)
+
+![DockerArchitecture](/images/DockerArchitecture.jpeg)
 
 **Sicherheitseinstellungen Docker**
 
