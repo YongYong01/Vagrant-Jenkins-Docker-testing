@@ -44,14 +44,13 @@ Wenn man ein bestimmmtes GIT Repository forked, dann zieht man eine eigene Versi
 
 
 **Commands**
+
 | Commands | Bedeutung |
 | -------------- | -------------- |
 | git branch | Mit diesem Befehl listet man alle Branches im eigenem Repo auf. Ebenfalls ist es möglich eigene Branches zu erstellen oder zu dem genannten Branch zu wechseln |
 | git checkout | Mit diesem Befehl wechselt man einen Branch |
 | git commit | Damit ruft man eine Bestätigung für eine gespeicherte Aktion aus |
 | git clone | Mit diesem Befehl klont man lokal ein Repository aus einem Git |
-
-
 
 ## Links
 
@@ -120,10 +119,12 @@ Architektur Docker:
 ![DockerArchitecture](images/DockerArchitecture.jpeg)
 
 **Sicherheitseinstellungen Docker**
-
+Für alle Applikationen kann ein andere Host Port weitergeleitet werden. Diese definiert man mit der Zeile EXPOSE.
+Anderweitige Einstellungen können vorgenommen werden, indem man einem User die Berechtigung gibt einen gewissen Container anzupassen.
+Sonst noch kann man Gruppeneinstellungen vornehmen, damit nur eine gewisse Benutzergruppe einen Container verwalten kann.
 
 **Was ist Ghost?**
-
+Ghost ist eine vollständig Open Source, anpassungsfähige Plattform für den Aufbau und Betrieb einer modernen Online-Publikation. 
 
 Ghost Architektur:
 
