@@ -32,6 +32,39 @@ Da ich das Wahlmodul 901 besuche, weiss ich im Grunde, wie ich eigene Container 
 
 #### Netzwerkplan
 
+    +------------------------------------------------------------------------------------------------+
+    | Netzwerk: 10.0.2.0/24                                                                          |
+    |+----------------------------------------------------------------------------------------------+|
+    || Hostname: ch-web01                                                                           ||
+    || OS: Ubunt  16.04 LTS                                                                         ||
+    ||                                                                                              ||
+    || LAN enp3s0: 10.0.2.15                                                                        ||
+    || Docker docker0: 172.17.0.1                                                                   ||
+    || Port: 80, 443, 8080, 8082                                                                    ||
+    || NAT: 32760-32780, 80, 8080, 8081, 8082, 3306, 2368                                           ||
+    ||                                                                                              ||
+    || +-----------------------------------------+      +-----------------------------------------+ ||
+    || | Ghost Container                       |      | Apache Container                        | ||
+    || | Ports: 8080, 2368                       |      | Ports: 80, 443, 8081                    | ||
+    || | Version: 2.60.3                         |      | Version: 14.04                          | ||
+    || | Plugins: git-client, docker-engine      |      | Plugins: -                              | ||
+    || |                                         |      |                                         | ||
+    || |                                         |      |                                         | ||
+    || +-----------------------------------------+      +-----------------------------------------+ ||
+    |+----------------------------------------------------------------------------------------------+|        |                                                                                                |
+    |+----------------------------------------------------------------------------------------------+|
+    || Hostname: ch-db01                                                                            ||
+    || OS: Ubunt  16.04 LTS                                                                         ||
+    ||                                                                                              ||
+    || LAN enp3s0: 10.0.2.16                                                                        ||
+    || Docker docker0: 172.17.0.2                                                                   ||
+    || Port: 80, 443, 3306                                                                          ||
+    || NAT: 32760-32780, 80, 8080, 8081, 8082, 3306,                                                ||
+    ||                                                                                              ||
+    || 
+    |+----------------------------------------------------------------------------------------------+|
+    +------------------------------------------------------------------------------------------------+
+
 #### Docker Befehle
 
 | Command | Bedeutung |
@@ -48,6 +81,7 @@ Da ich das Wahlmodul 901 besuche, weiss ich im Grunde, wie ich eigene Container 
 Docker ist ein Open-Source-Projekt zur Automatisierung der Bereitstellung von Anwendungen als portable Container, die in der Cloud oder vor Ort ausgeführt werden können. Docker-Image-Container können unter Linux und Windows ausgeführt werden. Windows-Bilder können jedoch nur auf Windows-Rechnern ausgeführt werden und Linux-Bilder können auf Linux-Rechnern und Windows-Rechnern, wobei der Host ein Server oder eine VM ist.
 
 Architektur Docker:
+
 ![Docker Architecture](/images/DockerArchitecture.jpeg)
 
 **Sicherheitseinstellungen Docker**
@@ -57,7 +91,9 @@ Architektur Docker:
 
 
 Ghost Architektur:
+
 ![Ghost Architecture](/images/GhostArchitecture.png)
+
 ## K5 <a name="k5"></a> 
 
 **Vergleich Vorwissem**
