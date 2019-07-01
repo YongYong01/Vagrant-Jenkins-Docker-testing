@@ -304,12 +304,19 @@ Beispiel von mc-b/m300
 Damit kann man eine Kubernetesumgebung mit zusätzlichem Frontend einrichten.
 
 git clone https://github.com/mc-b/lernkube
+
 cd lernkube
+
 git clone https://github.com/mc-b/iot.kafka
+
 cp templates/MISEGR.yaml config.yaml
+
 vagrant plugin install vagrant-disksize
+
 vagrant up
+
 source kubeenv
+
 kubectlapply -f misegr/ewolff/ms-kubernetes/
 
 **CMS Ghost**
