@@ -303,21 +303,21 @@ Beispiel von mc-b/m300
 **Kubernetes Übung**
 Damit kann man eine Kubernetesumgebung mit zusätzlichem Frontend einrichten.
 
-git clone https://github.com/mc-b/lernkube
+git clone https://github.com/mc-b/lernkube 
 
-cd lernkube
+cd lernkube 
 
-git clone https://github.com/mc-b/iot.kafka
+git clone https://github.com/mc-b/iot.kafka 
 
-cp templates/MISEGR.yaml config.yaml
+cp templates/MISEGR.yaml config.yaml 
 
-vagrant plugin install vagrant-disksize
+vagrant plugin install vagrant-disksize 
 
-vagrant up
+vagrant up 
 
-source kubeenv
+source kubeenv 
 
-kubectlapply -f misegr/ewolff/ms-kubernetes/
+kubectlapply -f misegr/ewolff/ms-kubernetes/ 
 
 **CMS Ghost**
 Mit Ghost konnte ich eine Blogging Seite einrichten.
