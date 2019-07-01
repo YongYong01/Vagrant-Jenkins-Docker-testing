@@ -1,9 +1,6 @@
 # TBZM300
 Dokumentation Modul 300
 
-# TBZM300
-Dokumentation Modul 300
-
 ## Inhaltsverzeichnis
 
 * 01 - [K1](#k1-)
@@ -245,6 +242,33 @@ Ghost Architektur:
 
 ![Ghost Architecture](images/GhostArchitecture.png)
 
+**Microservice**
+Ein Mikroservice ist ein einzelner Prozess eines grossen Konstruktes. Der Sinn von Mikroservicen ist, dass man nicht alles in einer grossen Applikation abspeichert, sondern man spaltet jeden einzelnen Ablauf ab, damit man eine höhere Erreichbarkeit erzielen.
+
+Mein Microservice:
+
+    var http = require("http");
+    http.createServer(function (request, response) {
+        // Send the HTTP header 
+        // HTTP Status: 200 : OK
+        // Content Type: text/plain
+        response.writeHead(200, {'Content-Type': 'text/plain'});
+        
+        // Send the response body as "Hello World"
+        response.end('Hello World\n');
+    }).listen(8081);
+    
+    // Console will print the message
+    console.log('Server running at http://127.0.0.1:8081/');
+
+
+Mein Dockerfile:
+
+    FROM node:10
+    COPY helloworld.js ./
+    EXPOSE 8081
+    CMD [ "node", "hello_world.js" ]
+
 **Service Überwachung**
 
 Docker Container kann man mit verschiedenen Befehlen überwachen. Zum einen kann man alle Docker Prozesse mittels docker ps anzeigen und falls man alle Container auflisten will, dann gibt es den Befehl Docker Container list.
@@ -320,8 +344,97 @@ source kubeenv
 kubectlapply -f misegr/ewolff/ms-kubernetes/ 
 
 **CMS Ghost**
+
 Mit Ghost konnte ich eine Blogging Seite einrichten.
 
 ![GhostIntroduction](images/GhostIntroduction.png)
 
 [Documentation Ghost](https://ghost.org/docs/)
+
+**Continuous Integration**
+Um Continous Integration in unser System zu integrieren, kann man dazu Jenkins verwenden. Dies kann mit folgendem Image File erstellt werden:
+
+sudo apt-get update && sudo apt-get install -y apt-transport-https 
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add - 
+echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/ kubernetes.list 
+sudo apt-get update 
+sudo apt-get install -y kubectl 
+
+kubectl apply -f deployment.yaml
+
+    apiVersion: v1
+    kind: Service
+    metadata:
+    name: jenkins
+    labels:
+        app: jenkins
+        group: devops    
+        tier: frontend
+    spec:
+    type: LoadBalancer
+    ports:
+    - port: 8080
+        nodePort: 32100  
+        protocol: TCP
+    selector:
+        app: jenkins
+    ---
+    apiVersion: apps/v1beta2 # for versions before 1.8.0 use apps/v1beta1
+    kind: Deployment
+    metadata:
+    name: jenkins
+    spec:
+    replicas: 1
+    selector:
+        matchLabels:
+        app: jenkins
+    template:
+        metadata:
+        labels:
+            app: jenkins
+            group: devops
+            tier: frontend
+        spec:
+        securityContext:
+        runAsUser: 1000
+        fsGroup: 999  
+        supplementalGroups: [ 1000, 100, 0 ]  
+        containers:
+        - name: jenkins
+            image: misegr/jenkins
+            imagePullPolicy: IfNotPresent        
+            env:
+            - name: JENKINS_PASS
+            value: admin        
+            ports:
+            - containerPort: 8080
+            name: jenkins
+            # Volumes im Container
+            volumeMounts:
+            - mountPath: "/src"
+            subPath: src
+            name: "host-data"
+            - mountPath: "/var/run/docker.sock"
+            name: "docker-sock"   
+            - mountPath: "/usr/bin/kubectl"
+            name: "kubectl"          
+            - mountPath: "/var/jenkins_home/.kube"
+            name: "kube"  
+        # Volumes in Host
+        volumes:
+        - name: "host-data"
+            persistentVolumeClaim:
+            claimName: data-claim 
+        - name: "docker-cli-data"
+            hostPath:
+            path: "/data/docker-cli"
+        - name: "docker-sock"
+            hostPath:
+            path: "/var/run/docker.sock" 
+        - name: "kubectl"
+            hostPath:
+            path: "/usr/bin/kubectl" 
+        - name: "kube"
+            hostPath:
+            path: "/home/vagrant/.kube" 
+                        
